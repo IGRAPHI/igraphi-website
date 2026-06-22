@@ -18,7 +18,7 @@ backend:
   branch: main
   auth_type: pkce
   app_id: 4117321
-  base_url: https://igraphi.com
+  base_url: https://igraphi-bf2f0.web.app
   auth_endpoint: /admin/
 
 media_folder: images/insights
