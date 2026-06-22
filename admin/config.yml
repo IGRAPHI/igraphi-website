@@ -19,7 +19,7 @@ backend:
   auth_type: pkce
   app_id: 4117321
   base_url: https://igraphi-bf2f0.web.app
-  auth_endpoint: /admin/
+  auth_endpoint: /admin/index.html
 
 media_folder: images/insights
 public_folder: /images/insights
