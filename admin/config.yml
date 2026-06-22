@@ -14,7 +14,7 @@
 
 backend:
   name: github
-  repo: IGRAPHI/igraphi-website  # ← UPDATE if your repo name differs
+  repo: IGRAPHI/igraphi-website
   branch: main
   auth_type: pkce
   app_id: 4117321
