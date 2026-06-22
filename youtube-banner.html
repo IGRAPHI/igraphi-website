@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=2048">
+  <title>IGRAPHI YouTube Banner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 2048px; height: 1152px; overflow: hidden; }
+
+    .banner {
+      width: 2048px;
+      height: 1152px;
+      background: #111827;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Decorative background geometry ── */
+    .bg-circle-1 {
+      position: absolute;
+      top: -180px; right: -180px;
+      width: 680px; height: 680px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(237,28,36,.22) 0%, transparent 70%);
+    }
+    .bg-circle-2 {
+      position: absolute;
+      bottom: -220px; left: -150px;
+      width: 580px; height: 580px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(67,97,238,.18) 0%, transparent 70%);
+    }
+    .bg-circle-3 {
+      position: absolute;
+      top: 40px; left: 320px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,214,160,.09) 0%, transparent 70%);
+    }
+
+    /* Geometric ring accents */
+    .ring-1 {
+      position: absolute;
+      top: -60px; right: 220px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(237,28,36,.18);
+    }
+    .ring-2 {
+      position: absolute;
+      bottom: -40px; left: 480px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(67,97,238,.2);
+    }
+    .ring-3 {
+      position: absolute;
+      top: 60px; right: 100px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,190,11,.15);
+    }
+
+    /* Accent dots */
+    .dot-1 {
+      position: absolute;
+      top: 160px; right: 460px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #ED1C24;
+      opacity: .7;
+    }
+    .dot-2 {
+      position: absolute;
+      bottom: 200px; left: 360px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #FFBE0B;
+      opacity: .8;
+    }
+    .dot-3 {
+      position: absolute;
+      top: 260px; left: 640px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #06D6A0;
+      opacity: .6;
+    }
+    .dot-4 {
+      position: absolute;
+      bottom: 280px; right: 320px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4361EE;
+      opacity: .5;
+    }
+
+    /* Ear curve shape (top-left corner) */
+    .ear-shape {
+      position: absolute;
+      top: -30px; left: 80px;
+      width: 160px; height: 160px;
+      background: rgba(255,190,11,.09);
+      border-radius: 50% 4px 50% 50%;
+    }
+
+    /* Left edge red bar */
+    .red-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: linear-gradient(to bottom, #ED1C24, rgba(237,28,36,0));
+    }
+
+    /* ── SAFE ZONE INDICATOR (for reference — rendered content) ── */
+    /* Safe zone: 1546 x 423 px centered = left 251px, top 364.5px */
+
+    /* ── CONTENT CONTAINER ─────────────────────────────────────────
+       For a 2048 × 1152 banner the "viewable on all devices" safe zone
+       is 1235 × 338 px, centered:
+         X offset = (2048 − 1235) / 2 = 406.5 px
+         Y offset = (1152 − 338)  / 2 = 407 px
+    ──────────────────────────────────────────────────────────────── */
+    .content {
+      position: absolute;
+      z-index: 10;
+      left: 406px;
+      top: 407px;
+      width: 1235px;
+      height: 338px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 0 20px;
+    }
+
+    /* Left: Logo + tagline block */
+    .left-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .logo-wordmark {
+      font-family: Montserrat, sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .eyebrow {
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #06D6A0;
+      margin-bottom: 10px;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+    .headline em {
+      font-style: italic;
+      color: #ED1C24;
+    }
+
+    .descriptor {
+      font-family: Inter, sans-serif;
+      font-size: 13px;
+      color: rgba(240,236,231,.5);
+      line-height: 1.5;
+    }
+
+    /* Divider */
+    .divider {
+      width: 1px;
+      height: 220px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.14), transparent);
+      flex-shrink: 0;
+      margin: 0 40px;
+    }
+
+    /* Right: Info block */
+    .right-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .info-label {
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(240,236,231,.28);
+    }
+    .info-value {
+      font-family: Inter, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(240,236,231,.8);
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+
+    /* Pill tags — all 4 in a row */
+    .tags {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 7px;
+    }
+    .tag {
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(240,236,231,.6);
+      white-space: nowrap;
+    }
+    .tag.red   { border-color: rgba(237,28,36,.5);   color: #ED1C24; }
+    .tag.blue  { border-color: rgba(67,97,238,.5);   color: #4361EE; }
+    .tag.mint  { border-color: rgba(6,214,160,.5);   color: #06D6A0; }
+    .tag.yellow{ border-color: rgba(255,190,11,.5);  color: #FFBE0B; }
+
+    /* URL pill */
+    .url-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: rgba(237,28,36,.15);
+      border: 1.5px solid rgba(237,28,36,.4);
+      padding: 8px 18px;
+      border-radius: 999px;
+      align-self: flex-start;
+    }
+    .url-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #ED1C24;
+      flex-shrink: 0;
+    }
+
+    /* Large background watermark */
+    .watermark {
+      position: absolute;
+      right: -40px; bottom: -60px;
+      opacity: .04;
+      z-index: 1;
+    }
+
+    /* Bottom line */
+    .bottom-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, #ED1C24, #4361EE, #06D6A0, #FFBE0B);
+      opacity: .6;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+
+    <!-- Background decoration -->
+    <div class="bg-circle-1"></div>
+    <div class="bg-circle-2"></div>
+    <div class="bg-circle-3"></div>
+    <div class="ring-1"></div>
+    <div class="ring-2"></div>
+    <div class="ring-3"></div>
+    <div class="dot-1"></div>
+    <div class="dot-2"></div>
+    <div class="dot-3"></div>
+    <div class="dot-4"></div>
+    <div class="ear-shape"></div>
+    <div class="red-bar"></div>
+    <div class="bottom-line"></div>
+
+    <!-- Large watermark SVG logo -->
+    <div class="watermark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.93 168.24" width="520" height="auto">
+        <path fill="#ffffff" d="M121.97,168.24s-91.93,0-91.93,0c0,0-4.31-.04-7.55-1.66-4.1-2.06-9.89-5.54-13-9.32-3.15-3.82-5.18-8.18-6.15-12.71-2.07-9.64,2.54-20.01,9.82-27.33-.61,6.67,1,13.54,4.96,19.41-.54-26.64,20.45-49.9,48.81-52.48l-1.44-6.32c-24.7,5.46-50.19-3.4-65.49-22.81h69.16C52.73,41.23,44.7,20.86,47.64,0c0,0,69.33,66.68,69.33,66.68,1.93,1.86,3.71,4.01,5.22,6.31,1.43,2.19,2.64,4.51,3.53,6.85,1.21,3.17,1.65,6.69.68,9.94-5.08,17.05-20.06,17.14-25.89,19.66-.64.28,0,2.42,0,2.34v36.69c19.97,1.35,21.46,19.77,21.46,19.77Z"/>
+      </svg>
+    </div>
+
+    <!-- Main content (safe zone) -->
+    <div class="content">
+
+      <!-- LEFT: Brand identity -->
+      <div class="left-block">
+        <div class="logo-row">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.93 168.24" width="38" height="auto">
+            <path fill="#ED1C24" d="M121.97,168.24s-91.93,0-91.93,0c0,0-4.31-.04-7.55-1.66-4.1-2.06-9.89-5.54-13-9.32-3.15-3.82-5.18-8.18-6.15-12.71-2.07-9.64,2.54-20.01,9.82-27.33-.61,6.67,1,13.54,4.96,19.41-.54-26.64,20.45-49.9,48.81-52.48l-1.44-6.32c-24.7,5.46-50.19-3.4-65.49-22.81h69.16C52.73,41.23,44.7,20.86,47.64,0c0,0,69.33,66.68,69.33,66.68,1.93,1.86,3.71,4.01,5.22,6.31,1.43,2.19,2.64,4.51,3.53,6.85,1.21,3.17,1.65,6.69.68,9.94-5.08,17.05-20.06,17.14-25.89,19.66-.64.28,0,2.42,0,2.34v36.69c19.97,1.35,21.46,19.77,21.46,19.77Z"/>
+          </svg>
+          <span class="logo-wordmark">IGRAPHI</span>
+        </div>
+        <p class="eyebrow">Strategic Design Studio · Washington, DC</p>
+        <h1 class="headline">Turning Complexity<br>into <em>Clarity.</em></h1>
+        <p class="descriptor">Visual communication systems for international<br>organizations, NGOs, and global health agencies.</p>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="divider"></div>
+
+      <!-- RIGHT: Info + tags -->
+      <div class="right-block">
+        <div class="info-item">
+          <span class="info-label">What We Do</span>
+          <div class="tags">
+            <span class="tag red">Executive Presentations</span>
+            <span class="tag blue">Reports &amp; Publications</span>
+            <span class="tag mint">Campaign Systems</span>
+            <span class="tag yellow">Visual Storytelling</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Serving</span>
+          <span class="info-value">World Bank · PAHO/WHO · GFDRR · IDB · IMF</span>
+        </div>
+        <div class="info-item">
+          <span class="url-pill">
+            <span class="url-dot"></span>
+            igraphi.com
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

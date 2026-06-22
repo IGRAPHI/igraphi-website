@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IGRAPHI Insights</title>
+    <link>https://igraphi.com/insights</link>
+    <description>Articles from IGRAPHI on visual communication, presentation design, and clarity for international organizations and mission-driven teams.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://igraphi.com/insights/rss.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title><![CDATA[The Cost of Confusing Slides Before a High-Stakes Meeting]]></title>
+      <link>https://igraphi.com/insights/confusing-slides-cost</link>
+      <guid isPermaLink="true">https://igraphi.com/insights/confusing-slides-cost</guid>
+      <pubDate>Sat, 20 Jun 2026 12:00:00 GMT</pubDate>
+      <category><![CDATA[Design Rescue]]></category>
+      <description><![CDATA[Messy slides can weaken a strong idea. Clear design helps the audience focus on the message, not the formatting — and that distinction matters most when the stakes are highest.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[What Makes a Presentation Executive-Ready?]]></title>
+      <link>https://igraphi.com/insights/executive-ready-presentation</link>
+      <guid isPermaLink="true">https://igraphi.com/insights/executive-ready-presentation</guid>
+      <pubDate>Mon, 15 Jun 2026 12:00:00 GMT</pubDate>
+      <category><![CDATA[Presentation Design]]></category>
+      <description><![CDATA[A high-stakes presentation should help decision-makers understand the issue, trust the message, and act with confidence. Most don't — not because the content is weak, but because the design is working against it.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Why Your Annual Report Sets the Tone Before It's Read]]></title>
+      <link>https://igraphi.com/insights/annual-report-credibility</link>
+      <guid isPermaLink="true">https://igraphi.com/insights/annual-report-credibility</guid>
+      <pubDate>Mon, 01 Jun 2026 12:00:00 GMT</pubDate>
+      <category><![CDATA[Institutional Design]]></category>
+      <description><![CDATA[Most international organizations treat their annual reports as a compliance requirement. The result signals institutional exhaustion rather than impact — before anyone reads the first paragraph.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[The Invisible Architecture of Executive Communication]]></title>
+      <link>https://igraphi.com/insights/executive-communication-architecture</link>
+      <guid isPermaLink="true">https://igraphi.com/insights/executive-communication-architecture</guid>
+      <pubDate>Fri, 01 May 2026 12:00:00 GMT</pubDate>
+      <category><![CDATA[Strategic Communication]]></category>
+      <description><![CDATA[Every executive communication is an argument. The content makes the case. The design determines whether the case is heard — before a single word is read.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[One Logo, Fourteen Languages: Why Institutional Brand Design Is a Different Problem]]></title>
+      <link>https://igraphi.com/insights/institutional-brand-design</link>
+      <guid isPermaLink="true">https://igraphi.com/insights/institutional-brand-design</guid>
+      <pubDate>Wed, 01 Apr 2026 12:00:00 GMT</pubDate>
+      <category><![CDATA[Brand Strategy]]></category>
+      <description><![CDATA[A global brand identity must signal scientific credibility, institutional authority, and cultural relevance simultaneously — across scripts and markets that often have contradictory requirements.]]></description>
+    </item>
+
+  </channel>
+</rss>

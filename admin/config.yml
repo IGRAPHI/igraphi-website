@@ -1,0 +1,165 @@
+# Decap CMS Configuration — IGRAPHI Insights
+# Docs: https://decapcms.org/docs/configuration-options/
+#
+# SETUP REQUIRED:
+#   1. Push this project to a GitHub repository
+#   2. Create a GitHub App at github.com/settings/apps/new
+#      - Homepage URL: https://igraphi.com
+#      - Callback URL: https://igraphi.com/admin/
+#      - No webhook needed
+#      - Permissions: Contents (Read & write), Metadata (Read)
+#   3. Install the GitHub App on your repo
+#   4. Replace YOUR_GITHUB_APP_ID below with the App ID
+#   5. Replace owner/repo below with your actual GitHub repo (e.g. igraphi/igraphi-website)
+
+backend:
+  name: github
+  repo: IGRAPHI/igraphi-website  # ← UPDATE if your repo name differs
+  branch: main
+  auth_type: pkce
+  app_id: 4117321
+  base_url: https://igraphi.com
+  auth_endpoint: /admin/
+
+media_folder: images/insights
+public_folder: /images/insights
+
+# Show editorial workflow (Draft → In Review → Ready → Published)
+publish_mode: editorial_workflow
+
+collections:
+  - name: insights
+    label: Insights Articles
+    label_singular: Insight Article
+    folder: content/insights
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    sortable_fields: ["publishDate", "title", "category"]
+    view_filters:
+      - label: Published
+        field: isPublished
+        pattern: true
+      - label: Drafts
+        field: isPublished
+        pattern: false
+    fields:
+
+      # ── Core ──────────────────────────────────────────────────
+      - label: Title
+        name: title
+        widget: string
+        hint: "Full article title as it appears on the page"
+
+      - label: Slug
+        name: slug
+        widget: string
+        hint: "URL slug — lowercase, hyphens only. e.g. annual-report-credibility"
+        pattern: ['^[a-z0-9-]+$', "Lowercase letters, numbers, and hyphens only"]
+
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Institutional Design
+          - Strategic Communication
+          - Brand Strategy
+          - Presentation Design
+          - Design Rescue
+          - Web & Digital
+        hint: "Determines the accent color shown on the index card"
+
+      - label: Publish Date
+        name: publishDate
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        hint: "Used for sorting and the RSS feed"
+
+      - label: Read Time
+        name: readTime
+        widget: string
+        default: "5 min read"
+        hint: "e.g. 4 min read"
+
+      - label: Excerpt
+        name: excerpt
+        widget: text
+        hint: "2–3 sentence summary shown on the Insights index card. Keep it under 200 characters."
+
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: false
+        hint: "Used as Open Graph share image if no ogImage is set"
+
+      - label: Published
+        name: isPublished
+        widget: boolean
+        default: false
+        hint: "Toggle to true to show this article on the Insights page"
+
+      # ── SEO ───────────────────────────────────────────────────
+      - label: SEO
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Meta Title
+            name: metaTitle
+            widget: string
+            required: false
+            hint: "Defaults to: [Article Title] | IGRAPHI"
+
+          - label: Meta Description
+            name: metaDescription
+            widget: text
+            required: false
+            hint: "150–160 characters recommended"
+
+          - label: OG Title
+            name: ogTitle
+            widget: string
+            required: false
+            hint: "Defaults to meta title"
+
+          - label: OG Description
+            name: ogDescription
+            widget: text
+            required: false
+            hint: "Defaults to meta description"
+
+          - label: OG Image
+            name: ogImage
+            widget: image
+            required: false
+            hint: "Recommended: 1200×630px. Defaults to featuredImage."
+
+      # ── Article Body ──────────────────────────────────────────
+      - label: Article Body
+        name: body
+        widget: markdown
+        hint: "Full article text. Use ## for subheadings, **bold** for emphasis."
+
+      # ── Bottom CTA ────────────────────────────────────────────
+      - label: Bottom CTA
+        name: cta
+        widget: object
+        collapsed: true
+        hint: "Shown at the end of the article. Leave blank to use the default Design Rescue CTA."
+        fields:
+          - label: CTA Label
+            name: ctaLabel
+            widget: string
+            required: false
+            default: "View Design Rescue"
+
+          - label: CTA Link
+            name: ctaLink
+            widget: string
+            required: false
+            default: "/design-rescue"
+            hint: "Internal SPA page id (e.g. design-rescue) or external URL"

@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "confusing-slides-cost",
+    "title": "The Cost of Confusing Slides Before a High-Stakes Meeting",
+    "category": "Design Rescue",
+    "publishDate": "2026-06-20",
+    "readTime": "3 min read",
+    "excerpt": "Messy slides can weaken a strong idea. Clear design helps the audience focus on the message, not the formatting — and that distinction matters most when the stakes are highest.",
+    "isPublished": true
+  },
+  {
+    "slug": "executive-ready-presentation",
+    "title": "What Makes a Presentation Executive-Ready?",
+    "category": "Presentation Design",
+    "publishDate": "2026-06-15",
+    "readTime": "4 min read",
+    "excerpt": "A high-stakes presentation should help decision-makers understand the issue, trust the message, and act with confidence. Most don't — not because the content is weak, but because the design is working against it.",
+    "isPublished": true
+  },
+  {
+    "slug": "annual-report-credibility",
+    "title": "Why Your Annual Report Sets the Tone Before It's Read",
+    "category": "Institutional Design",
+    "publishDate": "2026-06-01",
+    "readTime": "5 min read",
+    "excerpt": "Most international organizations treat their annual reports as a compliance requirement. The result signals institutional exhaustion rather than impact — before anyone reads the first paragraph.",
+    "isPublished": true
+  },
+  {
+    "slug": "executive-communication-architecture",
+    "title": "The Invisible Architecture of Executive Communication",
+    "category": "Strategic Communication",
+    "publishDate": "2026-05-01",
+    "readTime": "5 min read",
+    "excerpt": "Every executive communication is an argument. The content makes the case. The design determines whether the case is heard — before a single word is read.",
+    "isPublished": true
+  },
+  {
+    "slug": "institutional-brand-design",
+    "title": "One Logo, Fourteen Languages: Why Institutional Brand Design Is a Different Problem",
+    "category": "Brand Strategy",
+    "publishDate": "2026-04-01",
+    "readTime": "6 min read",
+    "excerpt": "A global brand identity must signal scientific credibility, institutional authority, and cultural relevance simultaneously — across scripts and markets that often have contradictory requirements.",
+    "isPublished": true
+  }
+]

@@ -1,0 +1,13 @@
+# IGRAPHI LLC — SPA Clean URL Rewrite Rules
+# Place this file in the document root alongside index.html.
+# Required for Bluehost (Apache) hosting so every clean path serves index.html.
+
+Options -MultiViews
+RewriteEngine On
+
+# Don't rewrite requests for real files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite everything else to index.html
+RewriteRule ^ /index.html [L]

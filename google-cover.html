@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>IGRAPHI – Google Cover</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1024px; height: 576px; overflow: hidden; background: #111827; }
+
+    .cover {
+      width: 1024px;
+      height: 576px;
+      background: #111827;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Background layers ── */
+    .bg-glow-r {
+      position: absolute;
+      top: -100px; right: -60px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(237,28,36,.14) 0%, transparent 68%);
+    }
+    .bg-glow-l {
+      position: absolute;
+      bottom: -140px; left: -80px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(67,97,238,.1) 0%, transparent 70%);
+    }
+    .bg-glow-c {
+      position: absolute;
+      top: 20px; left: 380px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,214,160,.06) 0%, transparent 70%);
+    }
+
+    /* Grid lines (subtle) */
+    .grid-h {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,.04);
+    }
+    .grid-v {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Watermark logo */
+    .watermark {
+      position: absolute;
+      right: -30px;
+      bottom: -60px;
+      opacity: .035;
+    }
+
+    /* Left red edge */
+    .red-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, #ED1C24 40%, rgba(237,28,36,0));
+    }
+
+    /* Rainbow bottom line */
+    .rainbow-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right,
+        #ED1C24 0%, #ED1C24 25%,
+        #4361EE 25%, #4361EE 50%,
+        #06D6A0 50%, #06D6A0 75%,
+        #FFBE0B 75%, #FFBE0B 100%);
+      opacity: .55;
+    }
+
+    /* ── LAYOUT: Three-column ── */
+    .layout {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      padding: 0;
+    }
+
+    /* Vertical divider */
+    .v-divider {
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.1) 30%, rgba(255,255,255,.1) 70%, transparent);
+      align-self: stretch;
+    }
+
+    /* ── LEFT PANEL ── */
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 52px 40px 56px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-wordmark {
+      font-family: Montserrat, sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .logo-sub {
+      font-family: Inter, sans-serif;
+      font-size: 9px;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .04em;
+      margin-top: 4px;
+    }
+
+    .headline-block { }
+    .eyebrow {
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #06D6A0;
+      margin-bottom: 14px;
+    }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 54px;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: .98;
+      letter-spacing: -.02em;
+    }
+    .headline em { display: block; font-style: italic; color: #ED1C24; }
+
+    .location-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .location-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #ED1C24;
+      flex-shrink: 0;
+    }
+    .location-text {
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+
+    /* ── RIGHT PANEL ── */
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 52px 40px 52px;
+    }
+
+    .descriptor {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,.75);
+      line-height: 1.6;
+      letter-spacing: -.01em;
+      border-left: 2px solid rgba(237,28,36,.4);
+      padding-left: 20px;
+    }
+    .descriptor strong {
+      font-style: normal;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* Service discipline pills */
+    .disciplines {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .disc {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .disc-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .disc-label {
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* URL row */
+    .url-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .url-text {
+      font-family: Montserrat, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .url-badge {
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #ED1C24;
+      background: rgba(237,28,36,.12);
+      border: 1px solid rgba(237,28,36,.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    /* Client ticker row */
+    .clients {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .client-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,.25);
+      padding: 0 16px;
+      border-right: 1px solid rgba(255,255,255,.08);
+      white-space: nowrap;
+    }
+    .client-name:first-child { padding-left: 0; }
+  </style>
+</head>
+<body>
+  <div class="cover">
+
+    <!-- Background -->
+    <div class="bg-glow-r"></div>
+    <div class="bg-glow-l"></div>
+    <div class="bg-glow-c"></div>
+
+    <!-- Grid lines -->
+    <div class="grid-h" style="top:33%"></div>
+    <div class="grid-h" style="top:66%"></div>
+    <div class="grid-v" style="left:33%"></div>
+    <div class="grid-v" style="left:66%"></div>
+
+    <!-- Watermark -->
+    <div class="watermark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.93 168.24" width="360">
+        <path fill="#ffffff" d="M121.97,168.24s-91.93,0-91.93,0c0,0-4.31-.04-7.55-1.66-4.1-2.06-9.89-5.54-13-9.32-3.15-3.82-5.18-8.18-6.15-12.71-2.07-9.64,2.54-20.01,9.82-27.33-.61,6.67,1,13.54,4.96,19.41-.54-26.64,20.45-49.9,48.81-52.48l-1.44-6.32c-24.7,5.46-50.19-3.4-65.49-22.81h69.16C52.73,41.23,44.7,20.86,47.64,0c0,0,69.33,66.68,69.33,66.68,1.93,1.86,3.71,4.01,5.22,6.31,1.43,2.19,2.64,4.51,3.53,6.85,1.21,3.17,1.65,6.69.68,9.94-5.08,17.05-20.06,17.14-25.89,19.66-.64.28,0,2.42,0,2.34v36.69c19.97,1.35,21.46,19.77,21.46,19.77Z"/>
+      </svg>
+    </div>
+
+    <div class="red-bar"></div>
+    <div class="rainbow-bar"></div>
+
+    <!-- Layout -->
+    <div class="layout">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div class="logo-row">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.93 168.24" width="34" height="auto">
+            <path fill="#ED1C24" d="M121.97,168.24s-91.93,0-91.93,0c0,0-4.31-.04-7.55-1.66-4.1-2.06-9.89-5.54-13-9.32-3.15-3.82-5.18-8.18-6.15-12.71-2.07-9.64,2.54-20.01,9.82-27.33-.61,6.67,1,13.54,4.96,19.41-.54-26.64,20.45-49.9,48.81-52.48l-1.44-6.32c-24.7,5.46-50.19-3.4-65.49-22.81h69.16C52.73,41.23,44.7,20.86,47.64,0c0,0,69.33,66.68,69.33,66.68,1.93,1.86,3.71,4.01,5.22,6.31,1.43,2.19,2.64,4.51,3.53,6.85,1.21,3.17,1.65,6.69.68,9.94-5.08,17.05-20.06,17.14-25.89,19.66-.64.28,0,2.42,0,2.34v36.69c19.97,1.35,21.46,19.77,21.46,19.77Z"/>
+          </svg>
+          <div>
+            <div class="logo-wordmark">IGRAPHI</div>
+            <div class="logo-sub">Strategic Design Studio</div>
+          </div>
+        </div>
+
+        <div class="headline-block">
+          <p class="eyebrow">Strategic Communication & Design</p>
+          <h1 class="headline">Turning<br>Complexity<br><em>into Clarity.</em></h1>
+        </div>
+
+        <div>
+          <div class="clients">
+            <span class="client-name">World Bank</span>
+            <span class="client-name">PAHO/WHO</span>
+            <span class="client-name">GFDRR</span>
+            <span class="client-name">IDB</span>
+            <span class="client-name">IMF</span>
+          </div>
+          <div class="location-row" style="margin-top:14px;">
+            <div class="location-dot"></div>
+            <span class="location-text">Washington, DC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="v-divider"></div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <p class="descriptor">
+          Visual communication systems for<br>
+          <strong>multilateral institutions, global health agencies,</strong><br>
+          NGOs, and mission-driven organizations.
+        </p>
+
+        <div class="disciplines">
+          <div class="disc">
+            <div class="disc-dot" style="background:#ED1C24"></div>
+            <span class="disc-label">Executive Presentations</span>
+          </div>
+          <div class="disc">
+            <div class="disc-dot" style="background:#4361EE"></div>
+            <span class="disc-label">Reports &amp; Publications</span>
+          </div>
+          <div class="disc">
+            <div class="disc-dot" style="background:#FFBE0B"></div>
+            <span class="disc-label">Campaign &amp; Event Systems</span>
+          </div>
+          <div class="disc">
+            <div class="disc-dot" style="background:#06D6A0"></div>
+            <span class="disc-label">Visual Storytelling</span>
+          </div>
+        </div>
+
+        <div class="url-row">
+          <span class="url-text">igraphi.com</span>
+          <span class="url-badge">vherrera@igraphi.com</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
